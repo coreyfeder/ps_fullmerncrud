@@ -4,14 +4,22 @@ if (process.env.MODE != "production" ) {
 
 const mongoose = require('mongoose');
 
-let connectString = `mongodb+srv://` +                                          // protocol. is the "+srv" necessary?
-                    `${encodeURIComponent(process.env.MDB_USERNAME)}` +         // auth: username
-                    `:${encodeURIComponent(process.env.MDB_APIKEY)}` +          // auth: pw, auth token, etc.
-                    `@${process.env.MDB_APPNAME}.${process.env.MDB_APPID}` +    // server subdomain
-                    `.${process.env.MDB_SERVER}` +                              // base server name
-                    `/${process.env.MDB_DATABASE}`                              // any "path"
+// MongoDB connection elements
+// const REGION="us-east-1.aws"
+const DB_PREFIX = "mongodb+srv"
+const DB_APPNAME = "honeynutcluster"
+const DB_APPID = "71qzsuw"
+const DB_SERVERROOT = "mongodb.net"
+const DB_DATABASE = "fullcrud"
 
-// -> mongodb+srv://{USERNAME}:{APIKEY}@{APPNAME}.{APPID}.{SERVER}/{DATABASE}
+const DB_USERNAME = encodeURIComponent(process.env.MDB_USERNAME)
+const DB_PASSWORD = encodeURIComponent(process.env.MDB_PASSWORD)
+
+const DB_AUTHSTRING = `${DB_USERNAME}:${DB_PASSWORD}`
+const DB_SERVER = [DB_APPNAME, DB_APPID, DB_SERVERROOT].join(".")
+
+const connectString = `${DB_PREFIX}://${DB_AUTHSTRING}@${DB_SERVER}/${DB_DATABASE}`
+
 // console.debug("DEBUG: connectString: " + connectString)
 
 const connectDB = async () => {

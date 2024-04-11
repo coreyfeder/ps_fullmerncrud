@@ -7,8 +7,11 @@ const mongoose = require('mongoose');
 let connectString = `mongodb+srv://` +                                          // protocol. is the "+srv" necessary?
                     `${encodeURIComponent(process.env.MDB_USERNAME)}` +         // auth: username
                     `:${encodeURIComponent(process.env.MDB_APIKEY)}` +          // auth: pw, auth token, etc.
-                    `@${process.env.MDB_APPID}.${process.env.MDB_SERVER}` +     // full server name
+                    `@${process.env.MDB_APPNAME}.${process.env.MDB_APPID}` +    // server subdomain
+                    `.${process.env.MDB_SERVER}` +                              // base server name
                     `/${process.env.MDB_DATABASE}`                              // any "path"
+
+// -> mongodb+srv://{USERNAME}:{APIKEY}@{APPNAME}.{APPID}.{SERVER}/{DATABASE}
 // console.debug("DEBUG: connectString: " + connectString)
 
 const connectDB = async () => {

@@ -17,6 +17,7 @@ connectDB();
 
 // routes
 // org method #1: by Action
+app.get("/", async (res, req) => { res.send("Hi there!")});
 app.get("/notes", notesController.fetchNotes);  // read all
 app.get("/notes/:note_id", notesController.fetchNoteById);  // read one
 app.post("/notes", notesController.createNote);  // create

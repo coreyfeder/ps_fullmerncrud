@@ -4,9 +4,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "debug": "nodemon --verbose",
-    "test": "DOTENV_CONFIG_PATH=.env-test && echo \"Error: no test specified\" && exit 1",
-    "test:unit": "DOTENV_CONFIG_PATH=.env-test-unit jest --group=unit"
+    "debug": "nodemon --verbose"
   },
   "keywords": [],
   "author": "",
